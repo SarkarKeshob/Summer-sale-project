@@ -80,14 +80,17 @@ function updateTotal(){
 
 // Update Purchased Products List
 
-function updatePurchasedProductList(string1){
+function updatePurchasedProductList(string1,price){
+    
     let count=purchasedProductsId.childElementCount;
     let p = document.createElement('p');
     p.classList.add('my-5');
-    p.innerHTML=`${count+1}. ${string1}`;
-    console.log(p);
+    p.innerHTML=`${count+1}. ${string1} price: ${price} Tk`;
     purchasedProductsId.appendChild(p);
 };
+
+
+
 
 // Having id elements
 
@@ -99,7 +102,40 @@ let applyCupponButtonId=getId('apply-cuppon');
 let cuppon=getId('cuppon');
 let cupponCode=getId('cuppon-code');
 let purchasedProductsId=getId('purchased-products');
+let dialogBox=document.getElementById('go-home-dialog');
 let goHomeButton=getId('go-home');
-
+let cartProducts=[];
 
 // _________________________________________________________________
+
+
+// showing cart using local Storage
+
+class Products{
+    constructor(productName,productPrice){
+        this.productName=productName;
+        this.productPrice=productPrice;
+    }
+}
+
+const getDataFromLocalStorage=()=>{
+ let localObject=JSON.parse(localStorage.getItem('cart'));
+ if(localObject){
+    cartProducts=localObject;
+    totalPriceId.innerText=0;
+    purchasedProductsId.innerHTML='';
+   cartProducts.forEach(element => { 
+    updatePurchasedProductList(element.productName,element.productPrice);
+    updateTotalPrice(element.productPrice);
+    
+   });
+ }
+}
+
+const setDataToLocalStorage=(productName,productPrice)=>{
+    let product=new Products(productName,productPrice);
+   
+    cartProducts.push(product);
+    localStorage.setItem('cart',JSON.stringify(cartProducts));
+}
+

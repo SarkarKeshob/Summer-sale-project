@@ -21,8 +21,8 @@ let product1= getId('product-1');
 
 product1.addEventListener('click',function(){
     let price = getValue(product1);
-    updateTotalPrice(price);
-    updatePurchasedProductList('K. Accessories');
+    setDataToLocalStorage('K. Accessories',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -32,8 +32,8 @@ let product2= getId('product-2');
 
 product2.addEventListener('click',function(){
     let price = getValue(product2);
-    updateTotalPrice(price);
-    updatePurchasedProductList('K. Accessories');
+    setDataToLocalStorage('K. Accessories',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -43,8 +43,8 @@ let product3= getId('product-3');
 
 product3.addEventListener('click',function(){
     let price = getValue(product3);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Home Cooker');
+    setDataToLocalStorage('Home Cooker',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -54,8 +54,8 @@ let product4= getId('product-4');
 
 product4.addEventListener('click',function(){
     let price = getValue(product4);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Sports Back Cap');
+    setDataToLocalStorage('Sports Back Cap',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -65,8 +65,8 @@ let product5= getId('product-5');
 
 product5.addEventListener('click',function(){
     let price = getValue(product5);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Full Jersey Set');
+    setDataToLocalStorage('Full Jersey Set',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -76,8 +76,8 @@ let product6= getId('product-6');
 
 product6.addEventListener('click',function(){
     let price = getValue(product6);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Sports cates');
+    setDataToLocalStorage('Sports cates',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -87,8 +87,8 @@ let product7= getId('product-7');
 
 product7.addEventListener('click',function(){
     let price = getValue(product7);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Single Relax Chair');
+    setDataToLocalStorage('Single Relax Chair',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -98,8 +98,8 @@ let product8= getId('product-8');
 
 product8.addEventListener('click',function(){
     let price = getValue(product8);
-    updateTotalPrice(price);
-    updatePurchasedProductList('Children play');
+    setDataToLocalStorage('Children play',price);
+    getDataFromLocalStorage();
 });
 
 
@@ -109,13 +109,22 @@ let product9= getId('product-9');
 
 product9.addEventListener('click',function(){
     let price = getValue(product9);
-    updateTotalPrice(price);
-    updatePurchasedProductList('K. Flexible Sofa');
+    setDataToLocalStorage('Flexible Sofa',price);
+    getDataFromLocalStorage();
 });
 
+// Make Purchase
+
+makePurchaseButtonId.addEventListener('click',function(){
+    dialogBox.showModal();
+
+})
 
 // Reloading if go home button is used
 
 goHomeButton.addEventListener('click',function(){
+    localStorage.removeItem('cart');
     window.location.href='index.html';
 })
+
+getDataFromLocalStorage();
